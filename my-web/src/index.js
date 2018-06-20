@@ -2,15 +2,7 @@ import dva from 'dva';
 import './index.css';
 
 // 1. Initialize
-const app = dva({
-    initialState:{
-        products:[
-            {name: 'han',id:1},
-            {name: 'hou',id:2},
-            {name: 'rui',id:3},
-        ]
-    }
-});
+const app = dva({});
 
 // 2. Plugins
 // app.use({});
@@ -20,7 +12,6 @@ const app = dva({
 
 // 4. Router
 app.router(require('./router').default);
-app.model(require('./models/products').default);
 
 // 5. Start
 app.start('#root');
