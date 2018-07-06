@@ -13,6 +13,7 @@ function RouterConfig({ history }) {
         <Route path="/list" exact component={Example} />
         <Route path="/marry" exact component={Marry} />
         
+        {/* <Route path="/path3" exact component={Marry} /> */}
       </Switch>
     </Router>
   );

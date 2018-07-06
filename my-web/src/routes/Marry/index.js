@@ -1,12 +1,12 @@
-import React, {Fragment} from 'react';
-import Header from '../../components/Header'
+import React from 'react';
+import Wrap from '../../components/Wrap';
 
 const Marry = () => {
   return (
-    <Fragment>
-        <Header />
-        Marry
-    </Fragment>
+      <Wrap SelectedKeys={['1']}showMenu>
+          Merray
+          
+      </Wrap>
   );
 };
 
