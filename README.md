@@ -11,6 +11,58 @@
 > 发现连接不上
 #### 刚买完阿里云不能远程连接，安全组规则需要配置
 
+## 3.服务器下载nginx-php等
+nginx 
+```
+apt-get install nginx
+```
+
+## 4.将本地网页上传到阿里云服务器
+1. 在    /var/www/html  下gitclone自己的代码
+```
+root@iZbp177egh3y2vhbchrv2dZ:/var/www/html# git clone https://github.com/hanfengmi/aliyun-server-inline.git
+Cloning into 'aliyun-server-inline'...
+remote: Counting objects: 107, done.
+remote: Compressing objects: 100% (73/73), done.
+remote: Total 107 (delta 21), reused 99 (delta 15), pack-reused 0
+Receiving objects: 100% (107/107), 502.89 KiB | 102.00 KiB/s, done.
+Resolving deltas: 100% (21/21), done.
+Checking connectivity... done.
+root@iZbp177egh3y2vhbchrv2dZ:/var/www/html# ls
+aliyun-server-inline  index.nginx-debian.html
+root@iZbp177egh3y2vhbchrv2dZ:/var/www/html#
+```
+2. 在 Nginx 里目录指定到制定网页
+```
+cd /etc/nginx/  #切换目录
+```
+> nginx.conf 的文件，这个是 nginx 的配置文件   
+>conf.d 的文件夹，我们会在这个文件夹创建扩展名是 conf 的文件，每个文件代表一个网站配置。
+
+在conf.d下新建文件 xxx.conf
+```
+server {
+  listen 80 default_server;
+  server_name 47.98.195.42;
+  root /var/www/html/aliyun-server-inline/my-web/dist;
+  index index.html;
+  error_page 404 /404.html;
+        location = /40x.html
+}
+```
+> 检查配置是否成功
+```
+nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+#重启nginx
+nginx -s reload
+```
+之后打开访问公网ip,就能看到自己的静态网站了
+
+---
+# 遇到的问题
 ###  安装git不成功
 ```
 Reading package lists... Done
@@ -30,18 +82,6 @@ sudo apt-get update
 sudo apt-get install git
 ```
 成功
-
-## 3.服务器下载nginx-php等
-nginx 
-```
-apt-get install nginx
-```
-
-## 4.将本地网页上传到阿里云服务器
-
-·
-
-
 
 ## 格式化阿里云服务器后，ssh连接失败
 ```
@@ -69,6 +109,19 @@ ssh-keygen -R xx.xx.xxx.xx(ip)
 ```
 ssh root@xx.xx.xxx.xx
 ```
+
+
+
+### 服务器删除资源命令
+
+rm [file name] 删除文件
+
+rmdir [folder name] 删除空文件夹
+
+rm -rf [folder name] 删除文件夹
+
+[参考网址](https://my.oschina.net/u/2002738/blog/481598)
+
 
 
 
