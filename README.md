@@ -11,7 +11,7 @@
 > 发现连接不上
 #### 刚买完阿里云不能远程连接，安全组规则需要配置
 
-## 3.服务器下载nginx-php等
+## 3.服务器下载nginx等
 nginx 
 ```
 apt-get install nginx
@@ -82,6 +82,9 @@ sudo apt-get update
 sudo apt-get install git
 ```
 成功
+
+## 绑定域名
+待续...
 
 ## 格式化阿里云服务器后，ssh连接失败
 ```
