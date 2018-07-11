@@ -10,7 +10,32 @@
 ```
 > 发现连接不上
 #### 刚买完阿里云不能远程连接，安全组规则需要配置
+
+###  安装git不成功
+```
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Unable to locate package git
+```
+
+>原因：是因为新装的ubuntu系统，没有update的原因。   
+
+> 首先
+```
+sudo apt-get update
+```
+> 之后
+```
+sudo apt-get install git
+```
+成功
+
 ## 3.服务器下载nginx-php等
+nginx 
+```
+apt-get install nginx
+```
 
 ## 4.将本地网页上传到阿里云服务器
 
@@ -44,3 +69,7 @@ ssh-keygen -R xx.xx.xxx.xx(ip)
 ```
 ssh root@xx.xx.xxx.xx
 ```
+
+
+
+
