@@ -4,7 +4,7 @@
 ## 1.选择合适的服务器
 > 上网选择就好，操作系统选择自己熟悉的，大小也自己掌握～
 ## 2.ssh连接服务器
-> 看教程是使用命令
+> 看教程是使用命令
 ```
     ssh root@ip
 ```
@@ -59,7 +59,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 #重启nginx
 nginx -s reload
 ```
-之后打开访问公网ip,就能看到自己的静态网站了
+之后访问公网ip,就能看到自己的静态网站了
 
 ---
 # 遇到的问题
