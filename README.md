@@ -181,6 +181,60 @@ root@iZbp177egh3y2vhbchrv2dZ:~# pgrep mongo -l
 21916 mongod
 // 成功
 ```
+### 3.数据库常用操作
+> show dbs:显示数据库列表    
+show collections：显示当前数据库中的集合（类似关系数据库中的表table） 
+show users：显示所有用户   
+use yourDB：切换当前数据库至yourDB   
+db.help() ：显示数据库操作命令   
+db.yourCollection.help() ：显示集合操作命令，yourCollection是集合名
+
+> 1、数据库   
+>> 显示数据库列表   
+show dbs   
+>> 创建数据库   
+use bigMonkey   (如果存在就切换，不存在就创建)
+>> 删除数据库
+db.dropDatabase()
+
+> 2、Collection  (数据库表/集合)  
+>> 显示集合列表      
+show Collection
+>> 创建Collection    
+db.createCollection('girls')   
+自动创建对应的集合，无需预定义集合   
+===>>> { "ok" : 1 }
+>> 删除Collection   
+db.collection.drop()
+
+> 3、文档/数据  
+>> 查看所有 文档/数据   
+db.girls.find()    
+>> 插入 文档/数据  
+db.student.insert({_id:1, sname: 'zhangsan', sage: 20})   
+或者   
+db.student.save({_id:1, sname: 'zhangsan', sage: 22})   
+// 两者区别：在手动插入_id字段时，如果_id已经存在，insert不做操作，save做更新操作；如果不加_id字段，两者作用相同都是插入数据
+>> 更新 文档/数据   
+db.collection.update()   
+// { "_id" : ObjectId("5b4876d35557079537a09f8a"), "belong" : "zhaoke Han" }
+db.collection.update({'belong':'zhaoke Han'},{$set:{'belong':'monkey'}})   
+// =>{ "_id" : ObjectId("5b4876d35557079537a09f8a"), "belong" : "monkey" }   
+__参数__:db.collection.update(query,update,upsert,multi,writeConcern)    
+query : update的查询条件，类似sql update查询内where后面的。   
+update : update的对象和一些更新的操作符（如$,$inc...）等，也可以理解为sql update查询内set后面的   
+upsert : 可选，这个参数的意思是，如果不存在update的记录，是否插入objNew,true为插入，默认是false，不插入。   
+multi : 可选，mongodb 默认是false,只更新找到的第一条记录，如果这个参数为true,就把按条件查出来多条记录全部更新。   
+writeConcern :可选，抛出异常的级别
+>> 删除 文档/数据   
+db.collection.remove(
+   query,//删除条件   
+   justOne,//true或1只删除1个   
+   writeConcern //异常   
+)   
+
+
+
 
 
 
