@@ -125,6 +125,64 @@ rm -rf [folder name] 删除文件夹
 
 [参考网址](https://my.oschina.net/u/2002738/blog/481598)
 
+---
+
+
+## 5.云服务器创建并连接mongo
+> MongoDB 是一个基于分布式文件存储的数据库，介于关系数据库和非关系数据库之间，是非关系数据库当中功能最丰富，最像关系数据库。他支持的数据结构非常松散，是类似json的bson格式，因此可以存储比较复杂的数据类型。Mongo最大的特点是他支持的查询语言非常强大，其语法有点类似于面向对象的查询语言，几乎可以实现类似关系数据库单表查询的绝大部分功能，而且还支持对数据建立索引。
+
+### 1. 安装mongo
+```
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+```
+
+查看mongoDB版本
+```
+mongo -version
+```
+
+### 2. 启动和关闭mongodb
+```
+sudo service mongodb start
+sudo service mongodb stop
+```
+**启动报错！！！**
+```
+Failed to start mongodb.service: Unit mongodb.service not found.
+```
+> 所以我们要这样来：    
+```
+sudo vim /etc/systemd/system/mongodb.service
+```
+vim 输入：
+```
+[Unit]
+Description=High-performance, schema-free document-oriented database
+After=network.target
+
+[Service]
+User=mongodb
+ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
+
+[Install]
+WantedBy=multi-user.target
+```
+> wq保存退出。    再次start, 成功了
+
+
+
+查看mongodb是否启动 
+```
+pgrep mongo -l 
+======================
+
+root@iZbp177egh3y2vhbchrv2dZ:~# pgrep mongo -l
+21916 mongod
+// 成功
+```
+
+
 
 
 
