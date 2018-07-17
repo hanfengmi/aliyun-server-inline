@@ -181,7 +181,37 @@ root@iZbp177egh3y2vhbchrv2dZ:~# pgrep mongo -l
 21916 mongod
 // 成功
 ```
-### 3.数据库常用操作
+### 3.robot 3T连接mongo
+>1. 阿里云配置安全组规则，允许访问27017端口   
+
+>2. 服务器连接mongo
+```
+mongo
+------------
+use admin
+------------
+db.createUser(  
+  {  
+    user: "admin",  
+    pwd: "admin",  
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]  
+  }  
+)
+---------------------
+#检查是否成功
+> db.auth("admin","admin")
+> 1
+--------------------
+```
+>3. 使用robo 3t 连接mongodb   
+打开robot 3t   
+第一张
+![第一张](https://han-hou-img.oss-cn-beijing.aliyuncs.com/img/aliyun.jpeg
+)   第二张   
+![第二张](https://han-hou-img.oss-cn-beijing.aliyuncs.com/img/aliyunuser.jpeg)
+
+
+### 4.数据库常用操作
 > show dbs:显示数据库列表    
 show collections：显示当前数据库中的集合（类似关系数据库中的表table） 
 show users：显示所有用户   
@@ -235,6 +265,9 @@ db.collection.remove(
    justOne,//true或1只删除1个   
    writeConcern //异常   
 )   
+
+
+
 
 
 
