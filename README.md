@@ -10,6 +10,13 @@
 ```
 > 发现连接不上
 #### 刚买完阿里云不能远程连接，安全组规则需要配置
+> 网卡类型： 内网
+规则方向：入方向   
+授权策略：允许   
+常用端口： ssh(22)  http(80)   https(443)    mysql(3306)  【其余的你可以按照自己需求选择】   
+自定义端口： TCP   
+授权类型： 0.0.0.0/0   
+优先级：1   
 
 ## 3.服务器下载nginx等
 nginx 
@@ -238,16 +245,22 @@ db.createCollection('girls')
 db.collection.drop()
 
 3.3、文档/数据  
-> **查看所有 文档/数据**   
-db.girls.find()
+* **查看所有 文档/数据**   
+ db.girls.find() 查询所有数据 // db.girls.find().pretty()  易读方式查询数据   
+>> find()可以传入多个键 ==>  and操作   
+>> db.users.find({$or:[{'phone':'15717671152'},{name:'kezhan Han'}]}).pretty()  ==>   or操作   
+>> and与or联合使用   db.users.find({name:''name},$or:[{phone:'15717671152'},phone:'15717671155']).pretty()   
 
-> **插入 文档/数据**  
+* **条件操作符**
+
+
+* **插入 文档/数据**  
 db.student.insert({_id:1, sname: 'zhangsan', sage: 20})   
 或者   
 db.student.save({_id:1, sname: 'zhangsan', sage: 22})   
 // 两者区别：在手动插入_id字段时，如果_id已经存在，insert不做操作，save做更新操作；如果不加_id字段，两者作用相同都是插入数据
 
-> **更新 文档/数据**   
+* **更新 文档/数据**   
 db.collection.update()   
 // { "_id" : ObjectId("5b4876d35557079537a09f8a"), "belong" : "zhaoke Han" }
 db.collection.update({'belong':'zhaoke Han'},{$set:{'belong':'monkey'}})   
@@ -259,12 +272,14 @@ upsert : 可选，这个参数的意思是，如果不存在update的记录，�
 multi : 可选，mongodb 默认是false,只更新找到的第一条记录，如果这个参数为true,就把按条件查出来多条记录全部更新。   
 writeConcern :可选，抛出异常的级别
 
-> **删除 文档/数据**    
+* **删除 文档/数据**    
 db.collection.remove(
    query,//删除条件   
    justOne,//true或1只删除1个   
    writeConcern //异常   
-)   
+)  
+
+
 
 
 
