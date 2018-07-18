@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <title>猴王</title>
+  <link rel="stylesheet" href="index.css" />
+  <script>
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=1800){
+                    docEl.style.fontSize = '150px';
+                }else if(clientWidth<=500){
+                    docEl.style.fontSize = '70px';
+                }else{
+                    docEl.style.fontSize = 69.5 * (clientWidth / 1000) + 'px';
+                }
+            };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+  </script>
+</head>
+<body>
+
+  <div id="root"></div>
+  <script src="index.js"></script>
+
+</body>
+</html>
