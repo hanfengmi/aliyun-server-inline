@@ -63,7 +63,7 @@ class Wrap extends React.Component {
                 <Header global={this.props.global} openAuth={this.props.openAuth} />
                 <div style={{display:'flex'}}>
                     {this.props.showMenu?
-                        <div style={{ width: '2.56rem', position:'relative',marginTop:'-4px'}}>
+                        <div style={{ width: '2.56rem', position:'relative'}}>
                             <Button type="primary" onClick={this.toggleCollapsed.bind(this)} style={{position:'absolute',zIndex:'10',left:'10%',bottom:0}}>
                                 <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} />
                             </Button>

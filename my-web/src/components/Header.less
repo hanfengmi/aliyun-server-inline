@@ -2,9 +2,13 @@
 .header {
     height:@height+0.4rem;
     padding:0.2rem @height + 0.2rem;
-    border-bottom: 1px solid rgb(243, 242, 242);
-    box-shadow: 1px 1px 1px rgb(243, 242, 242);
     display: flex;
+    position: fixed;
+    justify-content:space-between;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:999;
     .logo {
         width:@height;
         height:@height;
@@ -24,20 +28,17 @@
         }
     }
     .center {
-        align-self: center;
-        flex:1;
+        // flex:1;
         text-align: center;
         perspective: 201px;
         // perspective-origin: top center;
         .thressd {
             display: inline-block;
             position:relative;
-            // &:hover {
-                animation: slidein 5s linear infinite;
-            // }
+            animation: slidein 15s linear infinite;
             transform-style: preserve-3d;
             transform-origin: center;
-            background: #fff;
+            background: transparent;
             span {
                 display: inline-block;
                 margin:0 0.1rem;
@@ -56,12 +57,13 @@
             }
             .background {
                 position: absolute;
-                border:1px solid #ccc;
+                // border:1px solid #ccc;
                 border-radius: 3px;
                 height:@height;
                 width:100%;
                 left:0;
                 top:0;
+                backface-visibility:hidden;
                 font-size:0.2rem;
                 transform: translateZ(-0.01rem) rotateY(180deg);
                 line-height:@height;

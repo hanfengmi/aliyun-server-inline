@@ -1,21 +1,28 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-// import { Link } from 'dva/router';
-import Wrap from '../components/Wrap';
-// import styles from  './IndexPage.less';
+import WebWrap from '../components/WebWrap';
+import First from './First';
+import Second from './Second';
+import styles from  './IndexPage.less';
 
 
 class IndexPage extends PureComponent{
   constructor(props){
     super(props)
     this.state = {
+
     }
   }
   render(){
     return (
-      <Wrap SelectedKeys={['1']} showMenu>
-
-      </Wrap>
+      <WebWrap>
+        <div className={styles.homeContent}>
+          <First />
+          <Second />
+          <First />
+          <First />
+        </div>
+      </WebWrap>
     );
   }
 }

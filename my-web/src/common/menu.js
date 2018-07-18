@@ -1,35 +1,35 @@
-const menu = [
+const menuList = [
     {
         icon:'pie-chart',
-        title:'列表',
+        title:'成员列表',
         path:'list',
         index:1
     },
     {
         icon:'desktop',
-        title:'姐荤',
+        title:'戒荤',
         path:'marry',
         index:2
     },
     {
         icon:'inbox',
-        title:'标题3',
+        title:'待定',
         path:'path3',
         index:3
     },
     {
         icon:'mail',
-        title:'标题4',
+        title:'待定',
         path:'path4',
         index:4,
         submenu:[
             {
-                title:'标题5',
+                title:'待定',
                 path:'path5',
                 index:5
             },
             {
-                title:'标题6',
+                title:'待定',
                 path:'path6',
                 index:6
             },
@@ -37,48 +37,48 @@ const menu = [
     },
     {
         icon:'mail',
-        title:'标题7',
+        title:'待定',
         path:'path7',
         index:7,
         submenu:[
             {
-                title:'标题8',
+                title:'待定',
                 path:'path8',
                 icon:'mail',
                 index:8
             },
             {
-                title:'标题9',
+                title:'待定',
                 path:'path9',
                 icon:'mail',
                 index:9
             },
             {
-                title:'标题10',
+                title:'待定',
                 path:'path10',
                 icon:'mail',
                 index:10,
                 submenu:[
                     {
-                        title:'标题11',
+                        title:'待定',
                         path:'path11',
                         icon:'mail',
                         index:11
                     },
                     {
-                        title:'标题12',
+                        title:'待定',
                         path:'path12',
                         icon:'mail',
                         index:12,
                         submenu:[
                             {
-                                title:'标题13',
+                                title:'待定',
                                 path:'path13',
                                 icon:'mail',
                                 index:13,
                             },
                             {
-                                title:'标题14',
+                                title:'待定',
                                 path:'path14',
                                 icon:'mail',
                                 index:14,
@@ -90,4 +90,4 @@ const menu = [
         ]
     }
 ]
-export default menu;
+export default menuList;
