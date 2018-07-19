@@ -9,6 +9,10 @@
     left:0;
     width:100%;
     z-index:999;
+    :global(.ant-menu-horizontal) {
+        border: none;
+        background: transparent;
+    }
     .logo {
         width:@height;
         height:@height;
@@ -73,4 +77,11 @@
         }
         
     }
+}
+:global(.ant-menu-submenu) > :global(.ant-menu) {
+    background: transparent;
+    box-shadow: none;
+    border:1px solid #fff;
+    border-top:none;
+    border-radius: 0 0 4px 4px;
 }

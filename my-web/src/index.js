@@ -1,13 +1,17 @@
 import dva from 'dva';
+import { browserHistory } from 'dva/router';
 import './index.css';
 
 // 1. Initialize
-const app = dva({});
+const app = dva({
+    history: browserHistory,
+});
 
 // 2. Plugins
 // app.use({});
 
 // 3. Model
+app.model(require('./models/userList').default);
 app.model(require('./models/example').default);
 // app.model(require('./models/global').default);
 

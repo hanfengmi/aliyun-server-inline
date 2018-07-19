@@ -43,7 +43,7 @@ class Header extends React.Component {
             if (item.submenu) {
                 result = (
                 <SubMenu key={item.index} title={<span><Icon type={item.icon} /><span>{item.title}</span></span>}>
-                    <MenuItemGroup title="Item 1">
+                    <MenuItemGroup title={item.title}>
                         {this.formatter(item.submenu, `${parentPath}${item.path}/`,true)}
                     </MenuItemGroup>
                 </SubMenu>
@@ -62,7 +62,8 @@ class Header extends React.Component {
         return (
             <div className={styles.header}>
                 <Link to="/" className={styles.logo}></Link>
-                <Menu style={{border:'none'}}
+                <Menu 
+                // style={{border:'none',background:'transparent'}}
                     onClick={this.handleClick}
                     selectedKeys={[this.state.current]}
                     mode="horizontal"

@@ -1,13 +1,22 @@
 import React,{ Fragment } from 'react';
+import { connect } from 'dva';
 
-const First = () => {
-  return (
-      <div style={{borderBottom:'1px solid #ccc'}}>
-        <Fragment>
-            First
-        </Fragment>
-      </div>
-  );
+@connect(({ example }) => ({
+  example,
+}))
+
+class First extends React.Component {
+
+  render(){
+      return (
+        <div style={{borderBottom:'1px solid #ccc'}}>
+          <Fragment>
+              First
+          </Fragment>
+        </div>
+      );
+  }
+  
 };
 
 
