@@ -246,26 +246,42 @@ db.collection.drop()
 
 3.3、文档/数据  
 * **查看所有 文档/数据**   
- db.girls.find() 查询所有数据 // db.girls.find().pretty()  易读方式查询数据   
->> find()可以传入多个键 ==>  and操作   
->> db.users.find({$or:[{'phone':'15717671152'},{name:'kezhan Han'}]}).pretty()  ==>   or操作   
->> and与or联合使用   db.users.find({name:''name},$or:[{phone:'15717671152'},phone:'15717671155']).pretty()   
+> db.girls.find() 查询所有数据 // db.girls.find().pretty()  易读方式查询数据    
+
+> find()可以传入多个键 ==>  and操作    
+
+> db.users.find({$or:[{'phone':'15717671152'},{name:'kezhan Han'}]}).pretty()  ==>   or操作   
+
+> and与or联合使用   db.users.find({name:''name},$or:[{phone:'15717671152'},phone:'15717671155']).pretty()   
 
 * **条件操作符**
+    * (>) 大于 - $gt
+    * (<) 小于 - $lt
+    * (>=) 大于等于 - $gte
+    * (<= ) 小于等于 - $lte
+> find('age':{$gt:20})  大于20的
 
+* **Limit与Skip方法**
+> db.col.find({},{"title":1,_id:0}).limit(2) 显示两条
+> db.col.find({},{"title":1,_id:0}).limit(1).skip(1) 跳过几条，显示几条
+
+* 排序 sort()
+> 1 和 -1 来指定排序的方式，其中 1 为升序排列，而 -1 是用于降序排列   
+__skip(), limilt(), sort()三个放在一起执行的时候，执行的顺序是先 sort(), 然后是 skip()，最后是显示的 limit()__
+> 非数字类型排序是根据什么排序
 
 * **插入 文档/数据**  
-db.student.insert({_id:1, sname: 'zhangsan', sage: 20})   
+> db.student.insert({_id:1, sname: 'zhangsan', sage: 20})   
 或者   
 db.student.save({_id:1, sname: 'zhangsan', sage: 22})   
 // 两者区别：在手动插入_id字段时，如果_id已经存在，insert不做操作，save做更新操作；如果不加_id字段，两者作用相同都是插入数据
 
 * **更新 文档/数据**   
-db.collection.update()   
+>db.collection.update()   
 // { "_id" : ObjectId("5b4876d35557079537a09f8a"), "belong" : "zhaoke Han" }
 db.collection.update({'belong':'zhaoke Han'},{$set:{'belong':'monkey'}})   
 // =>{ "_id" : ObjectId("5b4876d35557079537a09f8a"), "belong" : "monkey" }   
-__参数__:db.collection.update(query,update,upsert,multi,writeConcern)    
+__参数__: db.collection.update(query,update,upsert,multi,writeConcern)    
 query : update的查询条件，类似sql update查询内where后面的。   
 update : update的对象和一些更新的操作符（如$,$inc...）等，也可以理解为sql update查询内set后面的   
 upsert : 可选，这个参数的意思是，如果不存在update的记录，是否插入objNew,true为插入，默认是false，不插入。   
@@ -273,7 +289,7 @@ multi : 可选，mongodb 默认是false,只更新找到的第一条记录，如�
 writeConcern :可选，抛出异常的级别
 
 * **删除 文档/数据**    
-db.collection.remove(
+>db.collection.remove(
    query,//删除条件   
    justOne,//true或1只删除1个   
    writeConcern //异常   
