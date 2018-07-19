@@ -28,7 +28,6 @@ class UserList extends React.Component {
     }
     render(){
         const { userList } = this.props;
-        console.log(userList.userList)
         const columns = [{
             title: '姓名',
             dataIndex: 'name',

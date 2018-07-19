@@ -9,13 +9,12 @@ import { message } from 'antd';
 import { queryUserList } from '../services/userList';
 export default {
     namespace: 'userList',
-
     state: {},
-
     subscriptions: {
         setup({ dispatch, history }) {
             history.listen(location => {
                 if( location.pathname === '/list'){
+                    console.log(13213123)
                     dispatch({
                         type: 'fetch',
                         payload: {

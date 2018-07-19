@@ -12,23 +12,6 @@ const noProxy = process.env.NO_PROXY;
 
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 const proxy = {
-  // 支持值为 Object 和 Array
-  // 'GET /api/currentUser': {
-  //   $desc: '获取当前用户接口',
-  //   $params: {
-  //     pageSize: {
-  //       desc: '分页',
-  //       exp: 2,
-  //     },
-  //   },
-  //   $body: {
-  //     name: '小栈管理员',
-  //     avatar:
-  //       'https://stackedu-icon.oss-cn-beijing.aliyuncs.com/stackedu-default-icon3.png?v=1527043439513',
-  //     userid: '00000001',
-  //     notifyCount: 12,
-  //   },
-  // },
   // GET POST 可省略
   'GET /api/userList': {
     errCode:0,
@@ -145,4 +128,9 @@ const proxy = {
 };
 
 // export default (noProxy ? {} : delay(proxy, 1000));
-export default (delay(proxy, 1000));
+export default (noProxy
+  ? {
+      'POST /api/(.*)': 'http://localhost:10112/api/',
+      'GET /api/(.*)': 'http://localhost:10112/api/',
+    }
+  : delay(proxy, 1000));

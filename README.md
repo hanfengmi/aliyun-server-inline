@@ -212,9 +212,10 @@ db.createUser(
 ```
 >3. 使用robo 3t 连接mongodb   
 打开robot 3t   
-第一张
+第一张    
 ![第一张](https://han-hou-img.oss-cn-beijing.aliyuncs.com/img/aliyun.jpeg
-)   第二张   
+)      
+第二张     
 ![第二张](https://han-hou-img.oss-cn-beijing.aliyuncs.com/img/aliyunuser.jpeg)
 
 
