@@ -130,7 +130,7 @@ const proxy = {
 // export default (noProxy ? {} : delay(proxy, 1000));
 export default (noProxy
   ? {
-      'POST /api/(.*)': 'http://localhost:10112/api/',
-      'GET /api/(.*)': 'http://localhost:10112/api/',
+      'POST /api/(.*)': 'http://localhost:9990/api/',
+      'GET /api/(.*)': 'http://localhost:9990/api/',
     }
   : delay(proxy, 1000));

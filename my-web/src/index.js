@@ -1,5 +1,5 @@
 import dva from 'dva';
-import { createBrowserHistory as createHistory } from 'history';
+import createHistory from 'history/createBrowserHistory';
 import createLoading from 'dva-loading';
 import './index.css';
 

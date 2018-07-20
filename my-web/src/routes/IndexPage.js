@@ -17,10 +17,10 @@ class IndexPage extends PureComponent{
     return (
       <WebWrap>
         <div className={styles.homeContent}>
-          <First />
-          <Second />
-          <First />
-          <First />
+          <First id="a" />
+          <Second id="b" />
+          <First id="c" />
+          <First id="d" />
         </div>
       </WebWrap>
     );

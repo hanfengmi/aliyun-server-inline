@@ -23,29 +23,27 @@ import styles from './index.less'
 }))
 
 class UserList extends React.Component {
-    componentDidMount(){
-        console.log()
-    }
     render(){
-        const { userList } = this.props;
+        console.log(this.props,'this.props')
+        const { userList:{ userList } } = this.props;
         const columns = [{
             title: '姓名',
             dataIndex: 'name',
             key: 'name',
         }, {
-            title: '年龄',
-            dataIndex: 'age',
-            key: 'age',
+            title: '性别',
+            dataIndex: 'gender',
+            key: 'gender',
         }, {
-            title: '住址',
-            dataIndex: 'address',
-            key: 'address',
+            title: '电话',
+            dataIndex: 'phone',
+            key: 'phone',
         }];
         return (
             <WebWrap>
                 <div className={styles.userList}>
                     <Fragment>
-                        <Table dataSource={userList.userList} columns={columns} />
+                        <Table dataSource={userList} rowKey={record => record._id} columns={columns} />
                     </Fragment>
                 </div>
             </WebWrap>
