@@ -13,7 +13,8 @@ app.use(createLoading());
 
 // 3. Model
 app.model(require('./models/userList').default);
-app.model(require('./models/example').default);
+app.model(require('./models/marryImage').default);
+// app.model(require('./models/example').default);
 // app.model(require('./models/global').default);
 
 // 4. Router

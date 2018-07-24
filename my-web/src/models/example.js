@@ -7,7 +7,7 @@ export default {
 
   subscriptions: {
     setup({ dispatch, history }) {  // eslint-disable-line
-      console.log('example',history.location.pathname)
+      // console.log('example',history.location.pathname)
     },
   },
 
