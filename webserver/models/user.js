@@ -12,35 +12,25 @@ const userSchema = new Schema({
   },
   name: {
     type: String,
-    unique: true,
     required: [true, "Nickname is required."],
     lowercase: true
   },
   // 用户密码
-  password: {
-    type: String,
-    required: [true, "Password is required."]
-  },
+  password: { type: String, required: [true, "Password is required."]},
   // 用户头像
   picture: { type: String, default: "" },
   // 用户个性签名
   signature: { type: String, default: "" },
   // 用户类型。
   role: { type: Number, default: 0 },
-  // 用户性别，-1：未知，0: female，1:male 。
-  gender: { type: Number, default: -1 },
-  // 用户地址,城市-街道-
+  // 用户性别
+  gender: { type: String, default: "famale" },
+  // 用户地址
   address: [{ type: String }],
-  // 用户组别，非必填
+  // 用户组别
   group: { type: Number },
   // 用户邮箱
-  email: {
-    type: String,
-    required: false,
-    lowercase: true
-  },
-  // 用户订单
-  orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
+  email: { type: String,required: false, lowercase: true },
   // 用户创建的blog
   blog: [{ type: Schema.Types.ObjectId, ref: "Blog" }],
   // 用户收藏的blog
