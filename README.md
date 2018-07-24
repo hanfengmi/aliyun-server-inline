@@ -138,7 +138,7 @@ rm -rf [folder name] 删除文件夹
 ## 5.云服务器创建并连接mongo
 > MongoDB 是一个基于分布式文件存储的数据库，介于关系数据库和非关系数据库之间，是非关系数据库当中功能最丰富，最像关系数据库。他支持的数据结构非常松散，是类似json的bson格式，因此可以存储比较复杂的数据类型。Mongo最大的特点是他支持的查询语言非常强大，其语法有点类似于面向对象的查询语言，几乎可以实现类似关系数据库单表查询的绝大部分功能，而且还支持对数据建立索引。
 
-### 1. 安装mongo
+### 5.1. 安装mongo
 ```
 sudo apt-get update
 sudo apt-get install -y mongodb-org
@@ -149,7 +149,7 @@ sudo apt-get install -y mongodb-org
 mongo -version
 ```
 
-### 2. 启动和关闭mongodb
+### 5.2. 启动和关闭mongodb
 ```
 sudo service mongodb start
 sudo service mongodb stop
@@ -188,7 +188,7 @@ root@iZbp177egh3y2vhbchrv2dZ:~# pgrep mongo -l
 21916 mongod
 // 成功
 ```
-### 3.robot 3T连接mongo
+### 5.3.robot 3T连接mongo
 >1. 阿里云配置安全组规则，允许访问27017端口   
 
 >2. 服务器连接mongo
@@ -219,7 +219,7 @@ db.createUser(
 ![第二张](https://han-hou-img.oss-cn-beijing.aliyuncs.com/img/aliyunuser.jpeg)
 
 
-### 4.数据库常用操作
+### 5.4.数据库常用操作
 > show dbs:显示数据库列表    
 show collections：显示当前数据库中的集合（类似关系数据库中的表table） 
 show users：显示所有用户   
@@ -227,7 +227,7 @@ use yourDB：切换当前数据库至yourDB
 db.help() ：显示数据库操作命令   
 db.yourCollection.help() ：显示集合操作命令，yourCollection是集合名
 
-3.1、数据库   
+5.4.1、数据库   
 > 显示数据库列表   
 show dbs   
 > 创建数据库   
@@ -235,7 +235,7 @@ use bigMonkey   (如果存在就切换，不存在就创建)
 > 删除数据库
 db.dropDatabase()
 
-3.2、Collection  (数据库表/集合)  
+5.4.2、Collection  (数据库表/集合)  
 > 显示集合列表      
 show Collection
 > 创建Collection    
@@ -245,7 +245,7 @@ db.createCollection('girls')
 > 删除Collection   
 db.collection.drop()
 
-3.3、文档/数据  
+5.4.3、文档/数据  
 * **查看所有 文档/数据**   
 > db.girls.find() 查询所有数据 // db.girls.find().pretty()  易读方式查询数据    
 
@@ -296,10 +296,68 @@ writeConcern :可选，抛出异常的级别
    writeConcern //异常   
 )  
 
+###5.4.5 数据库用户权限管理
+> mongodb安装好后第一次进入不需要密码的，也没有任何用户，直接使用命令进入
+* 添加管理用户
+```
+> use admin 
+
+> db.createUser( {user: "admin",pwd: "123456",roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]})
+
+> show users可以查看添加的用户
+```
+
+* 在配置文件中修改
+```
+ auth = true
+#noauth = true
+```
+* 使用命令再次进入mongo
+```
+use admin  
+
+show collections  --->>>报错  
+
+2018-07-23T12:07:04.401+0800 E QUERY    [thread1] Error: listCollections failed: {
+	"ok" : 0,
+	"errmsg" : "not authorized on bigMonkey to execute command { listCollections: 1.0, filter: {} }",
+	"code" : 13
+} :
+_getErrorWithCode@src/mongo/shell/utils.js:25:13
+DB.prototype._getCollectionInfosCommand@src/mongo/shell/db.js:773:1
+DB.prototype.getCollectionInfos@src/mongo/shell/db.js:785:19
+DB.prototype.getCollectionNames@src/mongo/shell/db.js:796:16
+shellHelper.show@src/mongo/shell/utils.js:774:9
+shellHelper@src/mongo/shell/utils.js:671:15
+@(shellhelp2):1:1
+
+``` 
+不验证，是做不了任何操作的。
+```
+db.auth("admin","123456")
+
+#认证，返回1表示成功
+```
+* 验证后添加用户，一个库至少有一个用户
+```
+> use mydb
+
+> db.createUser({user: "root",pwd: "123456",roles: [{ role: "readWrite", db: "mydb" }]}) 
+```
+
+* 创建的用户root登录进行数据库操作
+```
+mongo 127.0.0.1/mydb -uroot -p
+```
+OK!
 
 
+## 6.mongoose操作mongodb
 
-## 6.express搭建服务器
+
+## 7.express搭建服务器
+
+
 
 
 
