@@ -6,10 +6,18 @@
 *
 */
 import { message } from 'antd';
-import { queryImageList, addImage } from '../services/marryList';
+import { queryImageList, addImage, deleteImage, updateImage, getImageDetail } from '../services/marryList';
 export default {
     namespace: 'marryImage',
-    state: {},
+    state: {
+        marryImage: [], // 列表
+        imageDetails: {}, // 详情
+        imageId: '',
+        // 当前页数
+        pageIndex: 1,
+        // 每页条数
+        pageSize: 10,
+    },
     subscriptions: {
         setup({ dispatch, history }) {
             history.listen(location => {
@@ -58,6 +66,67 @@ export default {
                 message.destroy();
                 message.error(response.err.errmsg);
             }
+        },
+        *delete({ payload, callback },{ call, put }) {
+            const response = yield call(deleteImage, payload);
+            if (response.errCode === 0) {
+                message.destroy();
+                message.success('删除成功');
+                if (callback) callback();
+                yield put({
+                    type: 'fetch',
+                    payload: {
+                        pageIndex: 1,
+                        pageSize: 10,
+                    },
+                  });
+            } else {
+                message.destroy();
+                message.error(response.err.errmsg);
+            }
+        },
+        *getImageDetail({ payload, callback },{ call, put }) {
+            const response = yield call(getImageDetail, payload);
+            if (response.errCode === 0) {
+                if (callback) callback();   
+                yield put({
+                    type: 'details',
+                    payload: {
+                        imageId:response.result._id,
+                        imageDetails: response.result,
+                    },
+                });
+            } else {
+                message.destroy();
+                message.error(response.err.errmsg);
+            }
+        },
+        *update({ payload, callback },{ call, put }) {
+            const response = yield call(updateImage, payload);
+            if (response.errCode === 0) {
+                message.destroy();
+                message.success('更新成功');
+                if (callback) callback();   
+                yield put({
+                    type: 'fetch',
+                    payload: {
+                        pageIndex: 1,
+                        pageSize: 10,
+                    },
+                  });
+            } else {
+                message.destroy();
+                message.error(response.err.errmsg);
+            }
+        },
+        *formatForm({ payload, callback },{ call, put }){
+            yield put({
+                type: 'details',
+                payload: {
+                    imageId:'',
+                    imageDetails: {},
+                },
+            });
         }
     },
 
@@ -68,5 +137,11 @@ export default {
               ...action.payload,
             };
         },
+        details(state, action) {
+            return {
+                ...state,
+                ...action.payload,
+            };
+        }
     }
 }

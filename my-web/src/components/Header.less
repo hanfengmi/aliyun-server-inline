@@ -3,12 +3,12 @@
     height:@height+0.4rem;
     padding:0.2rem @height + 0.2rem;
     display: flex;
-    position: fixed;
+    // position: fixed;
     justify-content:space-between;
-    top:0;
-    left:0;
-    width:100%;
-    z-index:999;
+    // top:0;
+    // left:0;
+    // width:100%;
+    // z-index:999;
     :global(.ant-menu-horizontal) {
         border: none;
         background: transparent;
@@ -78,8 +78,15 @@
         
     }
 }
+.fixedHeader {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:999;
+}
 :global(.ant-menu-submenu) > :global(.ant-menu) {
-    background: transparent;
+    // background: transparent;
     box-shadow: none;
     border:1px solid #fff;
     border-top:none;

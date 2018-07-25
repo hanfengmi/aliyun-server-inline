@@ -30,7 +30,6 @@ export default {
         *fetch({ payload }, { call, put }) {
             const response = yield call(queryUserList);
             if (response.errCode === 0 && response.result) {
-                console.log(response,'responseresponse')
                 yield put({
                     type: 'save',
                     payload: {

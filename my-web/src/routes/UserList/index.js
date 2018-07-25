@@ -24,7 +24,6 @@ import styles from './index.less'
 
 class UserList extends React.Component {
     render(){
-        console.log(this.props,'this.props')
         const { userList:{ userList } } = this.props;
         const columns = [{
             title: '姓名',

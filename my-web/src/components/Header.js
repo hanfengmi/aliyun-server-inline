@@ -60,7 +60,7 @@ class Header extends React.Component {
     render(){
         const menu = this.formatter(menuList);
         return (
-            <div className={styles.header}>
+            <div className={`${styles.header} ${this.props.fixed? styles.fixedHeader :''}`}>
                 <Link to="/" className={styles.logo}></Link>
                 <Menu 
                 // style={{border:'none',background:'transparent'}}

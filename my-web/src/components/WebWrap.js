@@ -10,7 +10,7 @@ class WebWrap extends React.Component {
     render(){
         return (
             <Fragment>
-                <Header global={this.props.global} openAuth={this.props.openAuth} />
+                <Header fixed={this.props.fixed} global={this.props.global} openAuth={this.props.openAuth} />
                 <Fragment>
                     {this.props.children}
                 </Fragment>

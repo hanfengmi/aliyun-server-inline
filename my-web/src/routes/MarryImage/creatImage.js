@@ -1,33 +1,73 @@
 import React, { PureComponent } from 'react';
-import { Modal,Form, Input, Select } from 'antd';
+import { Modal,Form, Input, Select, Checkbox } from 'antd';
 import isEmpty from 'lodash/isEmpty';
 
 const FormItem = Form.Item;
 const { Option } = Select;
+const CheckboxGroup = Checkbox.Group;
+const plainOptions = ['Apple', 'Pear', 'Orange'];
+// const defaultCheckedList = ['Apple'];
 
 @Form.create()
 export default class CreatImage extends PureComponent {
-  checkCKEditor = (rule, value, callback) => {
-    if (!isEmpty(value)) {
-      callback();
-      return;
+    constructor(props){
+        super(props)
+        this.state = {
+            checkedList: [],
+            indeterminate: true,
+            checkAll: false,
+        }
     }
-    callback('请输入课程描述');
-  };
 
-  handleAdd = () => {
-    this.setState({
-        confirmLoading: true,
-    })
+    UNSAFE_componentWillReceiveProps(nextProps){
+        this.setState({
+            checkedList:nextProps.edit?nextProps.imageDetails.group:[],
+            indeterminate: nextProps.edit?!(nextProps.imageDetails.group.length === plainOptions.length):false,
+            checkAll: nextProps.edit?(nextProps.imageDetails.group.length === plainOptions.length):false,
+        })
+    };
+
+    checkCKEditor = (rule, value, callback) => {
+        if (!isEmpty(value)) {
+        callback();
+        return;
+        }
+        callback('请输入课程描述');
+    };
+
+  handleAdd = e => {
+    e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        this.props.handleSubmit(values);
+        this.props.handleSubmit({
+            ...values,
+            group:this.state.checkedList
+        });
+        this.props.form.resetFields();
       }
     });
+    
   };
-
   handleCancel(){
     this.props.cancle();
+    this.props.form.resetFields();
+  }
+
+  onChange = (checkedList) => {
+    this.setState({
+        checkedList,
+        indeterminate: !!checkedList.length && (checkedList.length < plainOptions.length),
+        checkAll: checkedList.length === plainOptions.length,
+    });
+    console.log(!!checkedList.length && (checkedList.length < plainOptions.length),'onChangeonChangeonChange')
+  }
+  onCheckAllChange = (e)=> {
+    this.setState({
+        checkedList: e.target.checked ? plainOptions : [],
+        indeterminate: false,
+        checkAll: e.target.checked,
+    });
+    // console.log(this.state.checkedList)
   }
 
   render() {
@@ -42,21 +82,22 @@ export default class CreatImage extends PureComponent {
         md: { span: 10 },
       },
     };
-    const { videoDetail, edit, visible, confirmLoading } = this.props;
+    // videoDetail, edit, 
+    const { visible, confirmLoading, imageDetails, edit } = this.props;
     const { getFieldDecorator } = this.props.form;
     return (
         <Modal title="添加Image"
                 visible={visible}
-                onOk={()=>{this.handleAdd()}}
+                onOk={this.handleAdd}
                 confirmLoading={confirmLoading}
                 onCancel={()=>{this.handleCancel()}}
                 okText='确定'
                 cancelText='取消'
         >
-            <Form onSubmit={this.handleAdd} hideRequiredMark style={{ marginTop: 8 }}>
-                <FormItem {...formItemLayout} label="url">
+            <Form hideRequiredMark style={{ marginTop: 8 }}>
+                <FormItem {...formItemLayout} label="链接">
                     {getFieldDecorator('url', {
-                        // initialValue: edit ? videoDetail.title : '',
+                        initialValue: edit ? imageDetails.url : '',
                         rules: [
                         {
                             required: true,
@@ -65,9 +106,9 @@ export default class CreatImage extends PureComponent {
                         ],
                     })(<Input placeholder="图片链接" />)}
                 </FormItem>
-                <FormItem {...formItemLayout} label="title">
+                <FormItem {...formItemLayout} label="标题">
                     {getFieldDecorator('title', {
-                        // initialValue: edit ? videoDetail.url : '',
+                        initialValue: edit ? imageDetails.title : '',
                         rules: [
                         {
                             required: true,
@@ -76,14 +117,14 @@ export default class CreatImage extends PureComponent {
                         ],
                     })(<Input placeholder="图片标题" />)}
                 </FormItem>
-                <FormItem {...formItemLayout} label="describtion">
+                <FormItem {...formItemLayout} label="描述">
                     {getFieldDecorator('describtion', {
-                        // initialValue: edit ? videoDetail.poster : '',
+                        initialValue: edit ? imageDetails.describtion : '',
                     })(<Input placeholder="照片描述" />)}
                 </FormItem>
-                <FormItem {...formItemLayout} label="show">
+                <FormItem {...formItemLayout} label="展示">
                 {getFieldDecorator('show', {
-                    // initialValue: edit ? String(videoDetail.level) : '',
+                    initialValue: edit ? String(imageDetails.show) : '',
                     rules: [
                     {
                         required: true,
@@ -97,6 +138,16 @@ export default class CreatImage extends PureComponent {
                         <Option value="1">展示</Option>
                     </Select>
                 )}
+                </FormItem>
+                <FormItem {...formItemLayout} label="组别">
+                    <Checkbox
+                        indeterminate={this.state.indeterminate}
+                        onChange={this.onCheckAllChange}
+                        checked={this.state.checkAll}
+                    >
+                        全选
+                    </Checkbox>
+                    <CheckboxGroup value={this.state.checkedList} options={plainOptions} onChange={this.onChange} />
                 </FormItem>
             </Form> 
         </Modal>  

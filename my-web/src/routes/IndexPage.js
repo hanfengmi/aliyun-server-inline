@@ -15,7 +15,7 @@ class IndexPage extends PureComponent{
   }
   render(){
     return (
-      <WebWrap>
+      <WebWrap fixed>
         <div className={styles.homeContent}>
           <First id="a" />
           <Second id="b" />
