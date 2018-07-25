@@ -16,6 +16,8 @@ const imageSchema = new Schema({
   },
   // 是否展示
   show: { type: Number, default: 1 },
+  // 是否删除
+  stage: { type: Number, default: 1 },
   // 图片描述
   describtion: { type: String, default: "" },
   // 图片组别，非必填
