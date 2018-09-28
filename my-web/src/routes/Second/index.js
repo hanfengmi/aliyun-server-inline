@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './index.less';
 
 const Marry = () => {
   return (
-      <div>
+      <div className={styles.bg}>
           Second
       </div>
   );

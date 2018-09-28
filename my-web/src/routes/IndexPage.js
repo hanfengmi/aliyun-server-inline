@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import WebWrap from '../components/WebWrap';
 import First from './First';
 import Second from './Second';
+import Third from './Third'
 import styles from  './IndexPage.less';
 
 
@@ -19,8 +20,9 @@ class IndexPage extends PureComponent{
         <div className={styles.homeContent}>
           <First id="a" />
           <Second id="b" />
-          <First id="c" />
-          <First id="d" />
+          <Third />
+          {/* <First id="c" />
+          <First id="d" /> */}
         </div>
       </WebWrap>
     );

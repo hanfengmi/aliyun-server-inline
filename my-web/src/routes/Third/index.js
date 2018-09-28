@@ -6,15 +6,12 @@ import styles from './index.less';
   example,
 }))
 
-class First extends React.Component {
+class Third extends React.Component {
 
   render(){
       return (
         <div className={styles.bg}>
-          <div className={styles.effect}>
-            <div className={styles.blackball}></div>
-            <div className={styles.redball}></div>
-          </div>
+          123
         </div>
       );
   }
@@ -22,4 +19,4 @@ class First extends React.Component {
 };
 
 
-export default First;
+export default Third;
