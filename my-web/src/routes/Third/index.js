@@ -11,7 +11,7 @@ class Third extends React.Component {
   render(){
       return (
         <div className={styles.bg}>
-          123
+          null
         </div>
       );
   }

@@ -1,78 +1,133 @@
-@-webkit-keyframes rball{
-    0%,100%{
-      left:38%;
-      width:60px;
-      height:60px;
-    }
-    4%,54%{
-      width:60px;
-      height:60px;
-    }
-    10%,60%{
-      width:50px;
-      height:70px;
-    }
-    20%,70%{
-      width:60px;
-      height:60px;
-    }
-    34%,90%{
-      width:70px;
-      height:50px;
-    }
-    41%{
-      width:60px;
-      height:60px;
-    }
-    50%{
-      left:60%;
-      width:60px;
-      height:60px;
-    }
-  }
+// @-webkit-keyframes rball{
+//     0%,100%{
+//       left:38%;
+//       width:60px;
+//       height:60px;
+//     }
+//     4%,54%{
+//       width:60px;
+//       height:60px;
+//     }
+//     10%,60%{
+//       width:50px;
+//       height:70px;
+//     }
+//     20%,70%{
+//       width:60px;
+//       height:60px;
+//     }
+//     34%,90%{
+//       width:70px;
+//       height:50px;
+//     }
+//     41%{
+//       width:60px;
+//       height:60px;
+//     }
+//     50%{
+//       left:60%;
+//       width:60px;
+//       height:60px;
+//     }
+//   }
 
 .bg {
     height:100vh;
     width:100%;
+    overflow: hidden;
     background: linear-gradient(45deg,rgb(26, 181, 122),rgb(195, 241, 67));
+    // background: #000;
     position: relative;
-    .effect{
+    // margin-top:1rem;
+    overflow: scroll;
+    .myWorld {
+      width:100%;
+      height:100%;
+      perspective: 2000;
+      -webkit-perspective: 2000;
+      perspective-origin: 50% 50%;
+      -webkit-perspective-origin: 50% 50%;
+      overflow: hidden;
+      position: relative;
+      .worldInner {
         position: absolute;
-        width:100%;
-        height:200px;
-        bottom:0;
-        left:0;
-        -webkit-filter:contrast(10);
-        background:#bcbcbc;
-      }
-      .blackball{
-        width:100px;
-        height:100px;
-        position: absolute;
-        top:50%;
+        width:300%;
+        height:150%;
         left:50%;
-        transform: translate(-50%,-50%);
-        background:black;
-        padding:10px;
-        border-radius:50%;
-        margin:0 auto;
-        z-index:1;
-        filter:blur(5px);
-        -webkit-filter:blur(5px);
-      }
-      .redball{
-        width:60px;
-        height:60px;
-        background:#f00;
-        padding:10px;
-        border-radius:50%;
-        position:absolute;
         top:50%;
-        left:50%;
         transform: translate(-50%,-50%);
-        z-index:2;
-        filter:blur(5px) ;
-        -webkit-filter:blur(5px) ;
-        -webkit-animation:rball 6s infinite;
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        transform-origin: 50% 50%;
+        -webkit-transform-origin: 50% 50%;
+        backface-visibility: visible;
+        -webkit-backface-visibility: visible;
+        .innerBox {
+          width:100%;
+          height:100%;
+          background: ~'url(./bg.png)' left top/0.5rem 0.5rem repeat;//
+          transform-origin:50% 50% 1rem;
+          overflow-y:scroll;
+          transition: 0.1s;
+          transition-timing-function: ease;
+          .boxAll {
+            height:300vh;
+            width:100%;
+            font-weight:500;
+            text-align: center;
+            -webkit-transform-style: preserve-3d;
+            h3 {
+              font-size:1rem;
+              line-height: 60vh;
+              margin-top:40vh;
+              color:#fff;
+              text-shadow: 1px 2px 8px #000;
+            }
+            .allPart {
+              // background: red;
+              line-height: 3;
+            }
+          }
+        }
       }
+    }
+    // .effect{
+    //     position: absolute;
+    //     width:100%;
+    //     height:200px;
+    //     bottom:0;
+    //     left:0;
+    //     -webkit-filter:contrast(10);
+    //     background:#bcbcbc;
+    //   }
+    //   .blackball{
+    //     width:100px;
+    //     height:100px;
+    //     position: absolute;
+    //     top:50%;
+    //     left:50%;
+    //     transform: translate(-50%,-50%);
+    //     background:black;
+    //     padding:10px;
+    //     border-radius:50%;
+    //     margin:0 auto;
+    //     z-index:1;
+    //     filter:blur(5px);
+    //     -webkit-filter:blur(5px);
+    //   }
+    //   .redball{
+    //     width:60px;
+    //     height:60px;
+    //     background:#f00;
+    //     padding:10px;
+    //     border-radius:50%;
+    //     position:absolute;
+    //     top:50%;
+    //     left:50%;
+    //     transform: translate(-50%,-50%);
+    //     z-index:2;
+    //     filter:blur(5px) ;
+    //     -webkit-filter:blur(5px) ;
+    //     -webkit-animation:rball 6s infinite;
+    //   }
 }

@@ -21,6 +21,7 @@ class IndexPage extends PureComponent{
           <First id="a" />
           <Second id="b" />
           <Third />
+          
           {/* <First id="c" />
           <First id="d" /> */}
         </div>
