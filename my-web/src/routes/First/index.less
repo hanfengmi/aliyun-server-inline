@@ -1,53 +1,43 @@
-// @-webkit-keyframes rball{
-//     0%,100%{
-//       left:38%;
-//       width:60px;
-//       height:60px;
-//     }
-//     4%,54%{
-//       width:60px;
-//       height:60px;
-//     }
-//     10%,60%{
-//       width:50px;
-//       height:70px;
-//     }
-//     20%,70%{
-//       width:60px;
-//       height:60px;
-//     }
-//     34%,90%{
-//       width:70px;
-//       height:50px;
-//     }
-//     41%{
-//       width:60px;
-//       height:60px;
-//     }
-//     50%{
-//       left:60%;
-//       width:60px;
-//       height:60px;
-//     }
-//   }
+@keyframes rotate{
+  0% {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+  100% {
+    transform: rotateY(0deg) rotateX(360deg);
+  }
+}
+@keyframes clipRoll{
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes clipRollB{
+  0% {
+    transform: rotate(0deg) translate(-50%,-50%);
+  }
+  100% {
+    transform: rotate(360deg) translate(-50%,-50%);
+  }
+}
 
 .bg {
     height:100vh;
     width:100%;
     overflow: hidden;
     background: linear-gradient(45deg,rgb(26, 181, 122),rgb(195, 241, 67));
-    // background: #000;
-    position: relative;
-    // margin-top:1rem;
-    overflow: scroll;
+    // overflow: scroll;
     .myWorld {
       width:100%;
       height:100%;
-      perspective: 2000;
-      -webkit-perspective: 2000;
+      perspective: 20rem;
+      -webkit-perspective: 20rem;
       perspective-origin: 50% 50%;
       -webkit-perspective-origin: 50% 50%;
-      overflow: hidden;
+      overflow-y: scroll;
+      overflow-x: hidden;
       position: relative;
       .worldInner {
         position: absolute;
@@ -64,28 +54,89 @@
         -webkit-backface-visibility: visible;
         .innerBox {
           width:100%;
-          height:100%;
-          background: ~'url(./bg.png)' left top/0.5rem 0.5rem repeat;//
-          transform-origin:50% 50% 1rem;
-          overflow-y:scroll;
+          height:300vh;
+          padding:2rem 0;
+          background: ~'url(./bg.png)' left top/0.2rem 0.2rem repeat;//
           transition: 0.1s;
+          transform-style: preserve-3d;
+          -webkit-transform-style: preserve-3d;
           transition-timing-function: ease;
           .boxAll {
-            height:300vh;
+            height:100%;
             width:100%;
             font-weight:500;
             text-align: center;
+            transform: rotateX(20deg);
+            position: relative;
+            transform-origin: 50% 50% 0;
+            -webkit-transform-origin: 50% 50% 0;
+            transform: translateZ(1rem);
+            transform-style: preserve-3d;
             -webkit-transform-style: preserve-3d;
             h3 {
-              font-size:1rem;
+              font-size:0.6rem;
               line-height: 60vh;
               margin-top:40vh;
               color:#fff;
               text-shadow: 1px 2px 8px #000;
+              margin:0;
             }
             .allPart {
-              // background: red;
+              position: absolute;
+              left:50%;
+              transform: translateX(-50%);
+              width:8rem;
+              height:80%;
               line-height: 3;
+              .partItem {
+                display: flex;
+                flex-direction: column;
+                .itemCont {
+                  .itemImg {
+                    cursor: pointer;
+                    width:3rem;
+                    height:3rem;
+                    border-radius: 50%;
+                    padding:0.3rem;
+                    transition:0.5s;
+                    position: relative;
+                    &::after {
+                      position: absolute;
+                      content:'';
+                      width:100%;
+                      height:100%;
+                      border:0.02rem solid rgba(17, 53, 168, 0.6);
+                      left:0;
+                      top:0;
+                      border-radius: 50%;
+                      clip-path: inset(5% 20% 15% 10%);
+                      animation: clipRoll 20s linear infinite;
+                    }
+                    img {
+                      width:100%;
+                      height:100%;
+                      border-radius: 50%;
+                      transition:0.5s;
+                    }
+                    &:hover {
+                      // border:0.04rem solid rgba(250,250,250,.3);
+                      img {
+                        transform: scale(1.1);
+                      }
+                    }
+                  }
+                  
+                  h4 {
+                    // margin-top:-1rem;
+                  }
+                  &:nth-of-type(even){
+                    align-self:flex-start;
+                  }
+                  &:nth-of-type(odd){
+                    align-self:flex-end;
+                  }
+                }
+              }
             }
           }
         }

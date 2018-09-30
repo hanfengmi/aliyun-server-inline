@@ -39,10 +39,10 @@ class First extends React.Component {
     const yDeg = ((h - 2*y)/h);
     this.setState({
       boxStyle : {
-        transform: `rotateY(${xDeg*40}deg) rotateX(${yDeg*25}deg)`
+        transform: `rotateY(${xDeg*30}deg) rotateX(${yDeg*10}deg)`
       },
       HStyle : {
-        transform: `rotateY(${xDeg*32}deg) rotateX(${yDeg*20}deg) translateZ(0.8rem) translateX(${xDeg*1}rem) translateY(${-yDeg*0.5}rem)`
+        transform: `rotateY(${xDeg*12}deg) rotateX(${yDeg*4}deg) translateZ(0.6rem) translateX(${xDeg*1}rem) translateY(${-yDeg*0.3}rem)`
       }
     })
   }
@@ -54,24 +54,37 @@ class First extends React.Component {
             <div className={styles.blackball}></div>
             <div className={styles.redball}></div>
           </div> */}
-          <div className={styles.myWorld}>
+          <div className={styles.myWorld}> 
+          {/* 视距层 */}
             <div className={styles.worldInner}>
-              <div className={styles.innerBox} style={this.state.boxStyle}>
+            {/* 3D父级层 */}
+              <div style={this.state.boxStyle} className={styles.innerBox}>
+              {/* 3D转换层   */}
                 <div className={styles.boxAll}>
                   <h3 style={this.state.HStyle}>猴子称大王</h3>
                   <div className={styles.allPart}>
-                    <div>sdadasda</div>
-                    <div>sdadasda</div>
-                    <div>sdadasda</div>
-                    <div>sdadasda</div>
-                    <div>sdadasda</div>
-                    <div>sdadasda</div>
-                    <div>sdadasda</div>
-                    <div>sdadasda</div>
-                    <div>sdadasda</div>
-                    <div>sdadasda</div>
+                    <div className={styles.partItem}>
+                      <div className={styles.itemCont}>
+                        <div className={styles.itemImg}>
+                          <img src={'https://yt3.ggpht.com/a-/AN66SAyM_WccbaTtRyXJWnmbgBxbzj0aMW5ijhJHCQ=s900-mo-c-c0xffffffff-rj-k-no'} alt="monkey"/>
+                        </div>
+                        <h4>叫什么名字</h4>
+                      </div>
+                      <div className={styles.itemCont}>
+                        <div className={styles.itemImg}>
+                          <img src={'https://yt3.ggpht.com/a-/AN66SAyM_WccbaTtRyXJWnmbgBxbzj0aMW5ijhJHCQ=s900-mo-c-c0xffffffff-rj-k-no'} alt="monkey"/>
+                        </div>
+                        <h4>叫什么名字</h4>
+                      </div>
+                      <div className={styles.itemCont}>
+                        <div className={styles.itemImg}>
+                          <img src={'https://yt3.ggpht.com/a-/AN66SAyM_WccbaTtRyXJWnmbgBxbzj0aMW5ijhJHCQ=s900-mo-c-c0xffffffff-rj-k-no'} alt="monkey"/>
+                        </div>
+                        <h4>叫什么名字</h4>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </div> 
               </div>
             </div>
           </div>

@@ -11,7 +11,17 @@ class Third extends React.Component {
   render(){
       return (
         <div className={styles.bg}>
-          null
+          <div className={styles.myWorld}> 
+          {/* 视距层 */}
+            <div className={styles.worldInner}>
+            {/* 3D父级层 */}
+              <div className={styles.innerBox}>
+              {/* 3D转换层 */}
+                <div className={styles.boxAll}>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       );
   }
