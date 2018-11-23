@@ -4,7 +4,7 @@
   "description": "server",
   "main": "server.js",
   "scripts": {
-    "dev": "babel-node server.js"
+    "start": "babel-node server.js"
   },
   "keywords": [
     "server"

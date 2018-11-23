@@ -23,6 +23,25 @@ nginx
 ```
 apt-get install nginx
 ```
+### 3.1 nginx配置
+```
+cd /etc/nginx
+vi nginx.conf
+/*
+  ##
+  # Virtual Host Configs
+  ##
+
+  include /etc/nginx/conf.d/*.conf;
+  include /etc/nginx/sites-enabled/*;
+*/ 
+```
+> 所以配置是在conf.d下面
+```
+cd /etc/nginx/conf.d/
+```
+> 才是真正的配置文件
+
 
 ## 4.将本地网页上传到阿里云服务器
 1. 在    /var/www/html  下gitclone自己的代码
